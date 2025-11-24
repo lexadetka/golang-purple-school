@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	const RUBtoUSD = 88  // 1 USD = 88 RUB
+	const USDtoRUB = 88  // 1 USD = 88 RUB
 	const EURtoUSD = 1.3 // 1 EUR = 1.3 USD
 
-	EURtoRUB := RUBtoUSD * EURtoUSD
+	EURtoRUB := USDtoRUB * EURtoUSD
 
 	fmt.Println(EURtoRUB)
 }
