@@ -1,0 +1,12 @@
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-container
+    volumes:
+      - .:/app
+    ports:
+      - "8001:8080"
+    tty: true
