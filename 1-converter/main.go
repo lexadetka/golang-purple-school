@@ -10,3 +10,15 @@ func main() {
 
 	fmt.Println(EURtoRUB)
 }
+
+func getUserInput() float64 {
+	var amount float64
+
+	fmt.Scan(&amount)
+
+	return amount
+}
+
+func calculate(amount float64, currency1 string, currency2 string) float64 {
+
+}
