@@ -10,3 +10,4 @@ services:
     ports:
       - "8001:8080"
     tty: true
+    user: 1000:1000
