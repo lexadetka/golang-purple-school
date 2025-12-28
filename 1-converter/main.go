@@ -9,7 +9,6 @@ func main() {
 
 	getUserInput(inputMap)
 
-	//res := calculate(inputMap["amount"].(float64), inputMap["startCurrency"].(string), inputMap["targetCurrency"].(string))
 	res := calculate(inputMap)
 
 	fmt.Println(res)
