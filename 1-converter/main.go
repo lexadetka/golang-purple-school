@@ -74,20 +74,20 @@ func getExchangeRate(startCurrency string, targetCurrency string) float64 {
 	const EURtoUSD float64 = 1.3 // 1 EUR = 1.3 USD
 	const EURtoRUB float64 = USDtoRUB * EURtoUSD
 
-	switch {
-	case startCurrency == "usd" && targetCurrency == "rub":
-		return USDtoRUB
-	case startCurrency == "eur" && targetCurrency == "rub":
-		return EURtoRUB
-	case startCurrency == "eur" && targetCurrency == "usd":
-		return EURtoUSD
-	case startCurrency == "rub" && targetCurrency == "usd":
-		return 1 / USDtoRUB
-	case startCurrency == "rub" && targetCurrency == "eur":
-		return 1 / EURtoRUB
-	case startCurrency == "usd" && targetCurrency == "eur":
-		return 1 / EURtoUSD
+	m := map[string]float64{
+		"usdrub": USDtoRUB,
+		"eurrub": EURtoRUB,
+		"eurusd": EURtoUSD,
+		"rubusd": 1 / USDtoRUB,
+		"rubeur": 1 / EURtoRUB,
+		"usdeur": 1 / EURtoUSD,
 	}
 
-	return -1
+	value, exists := m[startCurrency+targetCurrency]
+
+	if !exists {
+		return -1
+	}
+
+	return value
 }
