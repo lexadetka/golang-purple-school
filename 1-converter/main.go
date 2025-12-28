@@ -5,17 +5,20 @@ import (
 )
 
 func main() {
-	startCurrency, amount, targetCurrency := getUserInput()
+	inputMap := make(map[string]interface{})
 
-	res := calculate(amount, startCurrency, targetCurrency)
+	getUserInput(inputMap)
+
+	res := calculate(inputMap)
 
 	fmt.Println(res)
 }
 
-func getUserInput() (string, float64, string) {
+func getUserInput(inputMap map[string]interface{}) {
 	var startCurrency string
 	var targetCurrency string
 	var amount float64
+
 	fmt.Println("Введите исходную валюту [usd, eur, rub]")
 
 	for {
@@ -55,18 +58,20 @@ func getUserInput() (string, float64, string) {
 		break
 	}
 
-	return startCurrency, amount, targetCurrency
+	inputMap["startCurrency"] = startCurrency
+	inputMap["targetCurrency"] = targetCurrency
+	inputMap["amount"] = amount
 }
 
-func calculate(amount float64, startCurrency string, targetCurrency string) float64 {
+func calculate(inputMap map[string]interface{}) float64 {
 
-	rate := getExchangeRate(startCurrency, targetCurrency)
+	rate := getExchangeRate(inputMap["startCurrency"].(string), inputMap["targetCurrency"].(string))
 
 	if rate == -1 {
 		fmt.Println("Нет подходящей валютной пары")
 	}
 
-	return amount * rate
+	return inputMap["amount"].(float64) * rate
 }
 
 func getExchangeRate(startCurrency string, targetCurrency string) float64 {
