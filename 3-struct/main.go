@@ -13,9 +13,7 @@ type Bin struct {
 	name      string
 }
 
-type BinList struct {
-	BinList []Bin
-}
+type BinList []Bin
 
 func main() {
 
